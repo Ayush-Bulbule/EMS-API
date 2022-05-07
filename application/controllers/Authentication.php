@@ -41,7 +41,7 @@ class Authentication extends CI_Controller
         $email = $this->input->post('email');
         $response = $this->Auth_model->get_fp_question($email);
         if ($response) {
-            sendSuccess(array("question" => $response));
+            sendSuccess(array("status" => $response));
         } else {
             //Email Does Not Exists
             sendError($response);
