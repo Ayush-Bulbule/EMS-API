@@ -6,8 +6,6 @@ if (!defined('BASEPATH')) {
 
 class Auth_model extends CI_Model
 {
-
-
     //employee login
     public function loginUser(
         $email,
@@ -44,10 +42,17 @@ class Auth_model extends CI_Model
         }
     }
 
-    //return true if phone number exist in database
-    private function checkEmailAlreadyExist($email)
-    {
 
+    //Register Api
+    public function register()
+    {
+        $question = $this->input->post('question');
+        $answer = $this->input->post('answer');
+    }
+
+    //return true if phone number exist in database
+    public function checkEmailAlreadyExist($email)
+    {
         //return the row of which have same email id
         $emailCountsInDatabase = $this->db->where("email", $email)->get("employees")->num_rows();
 
@@ -57,27 +62,30 @@ class Auth_model extends CI_Model
 
         return false;
     }
+
+    public function get_fp_question($email)
+    {
+        $isEmailExists = $this->checkEmailAlreadyExist($email);
+
+        if ($isEmailExists) {
+            $user = $this->getEmployeeByEmail($email);
+            return $user->hint_question;
+        } else {
+            return false;
+        }
+    }
+    public function check_answer($email, $answer)
+    {
+        $user = $this->getEmployeeByEmail($email);
+        if ($user->hint_answer == $answer) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     //returns user on basis of email
     public function getEmployeeByEmail($email)
     {
         return $this->db->where("email", $email)->get('employees')->result()[0];
-    }
-
-    public function forgot_password($data)
-    {
-        $res = $this->db->insert('forgot_password', $data);
-        if ($res) {
-            return array(
-                "result" => true,
-                "message" => "Question Set Successfully!",
-            );
-        } else {
-            return array(
-                "result" => false,
-                "message" => "ERROR",
-            );
-        }
-
-        // return true;
     }
 }

@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
 /*
 | -------------------------------------------------------------------------
@@ -52,3 +52,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+
+$route['login'] = 'Authentication/login';ForgotPas
+$route['register'] = 'Authentication/register';
+
+$route['set_forgot_password'] = 'Authentication/set_forgot_password';
+$route['get_fp_question'] = 'Authentication/get_fp_question';
+
+//To check mail Existes
+$route['check_mail_exists'] = 'Authentication/check_mail_exists';
+//To get the forgot password question
+$route['get_fp_question'] = 'Authentication/get_fp_question';
+
+$route['validate_answer'] = 'Authentication/validate_answer';
