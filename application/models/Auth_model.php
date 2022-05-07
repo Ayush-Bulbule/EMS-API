@@ -78,10 +78,23 @@ class Auth_model extends CI_Model
     {
         $user = $this->getEmployeeByEmail($email);
         if ($user->hint_answer == $answer) {
+            return "true";
+        } else {
+            return "false";
+        }
+    }
+
+    public function reset_pass($email, $pass)
+    {
+        $query = "UPDATE employees SET password='$pass' WHERE email='$email'";
+        $this->db->query($query);
+        if ($this->db->affected_rows() > 0) {
             return true;
         } else {
             return false;
         }
+
+        // return $this->db->where("email", $email)->update("employees", array("password" => $pass));
     }
     //returns user on basis of email
     public function getEmployeeByEmail($email)

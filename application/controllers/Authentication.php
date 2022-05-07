@@ -40,11 +40,12 @@ class Authentication extends CI_Controller
     {
         $email = $this->input->post('email');
         $response = $this->Auth_model->get_fp_question($email);
+        // echo "Hello";
         if ($response) {
             sendSuccess(array("status" => $response));
         } else {
             //Email Does Not Exists
-            sendError($response);
+            sendSuccess(array("status" => $response));
         }
     }
 
@@ -52,16 +53,31 @@ class Authentication extends CI_Controller
     {
         $answer = $this->input->post("answer");
         $email = $this->input->post("email");
+        // sendSuccess(array("status" => $email));
 
-        // echo "answer: " . $answer . " email: " . $email;
 
-        $validation = $this->Auth_model->check_answer($email, $answer);
+        $response = $this->Auth_model->check_answer($email, $answer);
 
-        if ($validation) {
-            sendSuccess($validation);
+        if ($response) {
+            sendSuccess(array("status" => $response));
         } else {
-            //not validate
-            sendError($validation);
+            //Email Does Not Exists
+            sendSuccess(array("status" => $response));
+        }
+    }
+
+    public function reset_password()
+    {
+        $email = $this->input->post("email");
+        $password = $this->input->post("password");
+
+
+        $response = $this->Auth_model->reset_pass($email, $password);
+        if ($response) {
+            sendSuccess(array("status" => "true"));
+        } else {
+            //Email Does Not Exists
+            sendSuccess(array("status" => "false"));
         }
     }
 

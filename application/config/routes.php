@@ -66,3 +66,4 @@ $route['check_mail_exists'] = 'Authentication/check_mail_exists';
 $route['get_fp_question'] = 'Authentication/get_fp_question';
 
 $route['validate_answer'] = 'Authentication/validate_answer';
+$route['reset_password'] = 'Authentication/reset_password';
