@@ -11,15 +11,24 @@ class Authentication extends CI_Controller
 
     public function login()
     {
+
+        //check email
+        $email = $this->input->post('email');
+        $password = $this->input->post('password');
+
+
         $data = $this->Auth_model->loginUser(
             $this->input->post('email'),
             $this->input->post('password'),
         );
 
+
+        // sendSuccess($data);
+
         if ($data['result']) {
-            sendSuccess(array($data['data']));
+            sendSuccess($data['data']);
         } else {
-            sendError(array($data['message']));
+            sendError($data['message']);
         }
     }
 
@@ -80,10 +89,42 @@ class Authentication extends CI_Controller
             sendSuccess(array("status" => "false"));
         }
     }
+    public function key_check($key)
+    {
+
+        if ($this->Auth_model->check_auth_key($key) == false) {
+            $this->form_validation->set_message('key_check', 'Key is wrong');
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public function get_organization()
+    {
+        $events = $this->Auth_model->getOrganization();
+        sendSuccess(array('events' => $events));
+    }
+    public function get_department()
+    {
+        $dept = $this->Auth_model->getDepartment();
+
+        sendSuccess(array('dept' => $dept));
+    }
+    public function get_role()
+    {
+        $role = $this->Auth_model->getRole();
+        sendSuccess(array('role' => $role));
+    }
 
 
     public function register()
     {
+
+        $events = $this->Auth_model->getOrganization();
+        $dept = $this->Auth_model->getDepartment();
+        $role = $this->Auth_model->getRole();
+
 
 
         $email = $this->input->post('email');

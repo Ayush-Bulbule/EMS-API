@@ -67,3 +67,6 @@ $route['get_fp_question'] = 'Authentication/get_fp_question';
 
 $route['validate_answer'] = 'Authentication/validate_answer';
 $route['reset_password'] = 'Authentication/reset_password';
+$route['getOrganization'] = 'Authentication/get_organization';
+$route['get_department'] = 'Authentication/get_department';
+$route['get_role'] = 'Authentication/get_role';

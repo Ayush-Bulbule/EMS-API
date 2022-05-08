@@ -11,6 +11,7 @@ class EmployeeDetails extends CI_Controller
 
     public function getDetails()
     {
+
         $response = $this->Employee_model->getEmployeeDetails(
             $this->input->get('sevarth_id'),
         );
