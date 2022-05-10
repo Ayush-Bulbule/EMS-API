@@ -103,29 +103,23 @@ class Authentication extends CI_Controller
     public function get_organization()
     {
         $events = $this->Auth_model->getOrganization();
-        sendSuccess(array('events' => $events));
+        sendSuccess($events);
     }
     public function get_department()
     {
         $dept = $this->Auth_model->getDepartment();
 
-        sendSuccess(array('dept' => $dept));
+        sendSuccess($dept);
     }
     public function get_role()
     {
         $role = $this->Auth_model->getRole();
-        sendSuccess(array('role' => $role));
+        sendSuccess($role);
     }
 
 
-    public function register()
+    public function register_user()
     {
-
-        $events = $this->Auth_model->getOrganization();
-        $dept = $this->Auth_model->getDepartment();
-        $role = $this->Auth_model->getRole();
-
-
 
         $email = $this->input->post('email');
         $password = $this->input->post('password');
@@ -151,5 +145,37 @@ class Authentication extends CI_Controller
             'hint_question' => $hint_question,
             'hint_answer' => $hint_answer,
         );
+
+
+
+        //if employee
+        if ($role_id == 1 or $role_id == 2) {
+
+            if ($hod_response['result'] == false) {
+                sendError("HOD not found");
+            } else if ($principle_response['result'] == false) {
+                sendError("Principle not found");
+            } else if ($director_response['result'] == false) {
+                sendError("Director not found");
+            } else {
+                $loginArray['hod_id'] = $hod_response['id'];
+
+                if ($role_id == 2) {
+                    $loginArray['hod_id'] = -1;
+                }
+
+                $loginArray['principle_id'] = $principle_response['id'];
+                $loginArray['director_id'] = $director_response['id'];
+
+                sendSuccess(array("status" => $this->Auth_model->create($loginArray)));
+            }
+        } else {
+
+            $loginArray['hod_id'] = -1;
+            $loginArray['principle_id'] = -1;
+
+            $this->Auth_model->create($loginArray);
+            sendSuccess(array("status" => "You registered successfully!"));
+        }
     }
 }

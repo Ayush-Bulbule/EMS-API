@@ -215,4 +215,12 @@ class Auth_model extends CI_Model
     {
         return $this->db->where('value', $auth_key)->get('auth_key')->num_rows() > 0;
     }
+    public function create($loginArray)
+    {
+
+        $this->db->insert('employees', $loginArray);
+
+        // if a user created account successfully
+        return $this->db->insert_id();
+    }
 }

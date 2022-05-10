@@ -67,6 +67,17 @@ $route['get_fp_question'] = 'Authentication/get_fp_question';
 
 $route['validate_answer'] = 'Authentication/validate_answer';
 $route['reset_password'] = 'Authentication/reset_password';
-$route['getOrganization'] = 'Authentication/get_organization';
+$route['get_organization'] = 'Authentication/get_organization';
 $route['get_department'] = 'Authentication/get_department';
 $route['get_role'] = 'Authentication/get_role';
+
+$route['register_user'] = 'Authentication/register_user';
+
+$route['add_details'] = 'EmployeeDetails/add_details';
+
+$route['show_verifications'] = 'AdminController/show_verifications';
+$route['show_employees'] = 'AdminController/show_employees';
+
+$route['accept_principle_request'] = 'AdminController/accept_principle_request';
+$route['decline_principle_request'] = 'AdminController/decline_principle_request';
+$route['delete_employee'] = 'AdminController/delete_employee';
