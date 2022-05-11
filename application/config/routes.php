@@ -72,6 +72,7 @@ $route['get_department'] = 'Authentication/get_department';
 $route['get_role'] = 'Authentication/get_role';
 
 $route['register_user'] = 'Authentication/register_user';
+$route['check_key'] = 'Authentication/check_key';
 
 $route['add_details'] = 'EmployeeDetails/add_details';
 

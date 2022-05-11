@@ -89,16 +89,6 @@ class Authentication extends CI_Controller
             sendSuccess(array("status" => "false"));
         }
     }
-    public function key_check($key)
-    {
-
-        if ($this->Auth_model->check_auth_key($key) == false) {
-            $this->form_validation->set_message('key_check', 'Key is wrong');
-            return false;
-        } else {
-            return true;
-        }
-    }
 
     public function get_organization()
     {
@@ -175,7 +165,19 @@ class Authentication extends CI_Controller
             $loginArray['principle_id'] = -1;
 
             $this->Auth_model->create($loginArray);
-            sendSuccess(array("status" => "You registered successfully!"));
+            sendSuccess(array("status" => ""));
+        }
+    }
+
+
+    public function check_key()
+    {
+        $key = $this->input->post('key');
+        // sendError($key);
+        if ($this->Auth_model->check_auth_key($key) == false) {
+            sendSuccess(array('status' => 'false'));
+        } else {
+            sendSuccess(array('status' => 'true'));
         }
     }
 }
