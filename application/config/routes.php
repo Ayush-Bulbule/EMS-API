@@ -75,6 +75,8 @@ $route['register_user'] = 'Authentication/register_user';
 $route['check_key'] = 'Authentication/check_key';
 
 $route['add_details'] = 'EmployeeDetails/add_details';
+$route['get_details'] = 'EmployeeDetails/get_details';
+$route['edit_details'] = 'EmployeeDetails/edit_details';
 
 $route['show_verifications'] = 'AdminController/show_verifications';
 $route['show_employees'] = 'AdminController/show_employees';
