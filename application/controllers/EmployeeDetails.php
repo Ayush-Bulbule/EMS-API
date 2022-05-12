@@ -123,7 +123,7 @@ class EmployeeDetails extends CI_Controller
         $formArray['photo'] = $this->input->post('photo');
 
         $formArray['contact_no'] = $this->input->post('contact_no');
-        $formArray['alternative_contact_no'] = $this->input->post('alternate_contact_no');
+        $formArray['alternative_contact_no'] = $this->input->post('alternative_contact_no');
         $formArray['address'] = $this->input->post('address');
         $formArray['city'] = $this->input->post('city');
         $formArray['pin_code'] = $this->input->post('pin_code');
