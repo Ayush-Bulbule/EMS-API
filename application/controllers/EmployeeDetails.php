@@ -8,7 +8,7 @@ class EmployeeDetails extends CI_Controller
         $this->load->view('welcome_message');
     }
 
-    public function getDetails()
+    public function get_details()
     {
 
         $response = $this->Employee_model->getEmployeeDetails(
