@@ -223,4 +223,10 @@ class Auth_model extends CI_Model
         // if a user created account successfully
         return $this->db->insert_id();
     }
+    public function editDetails($formArray, $sevarth_id)
+    {
+
+        $this->db->where("sevarth_id", $sevarth_id)->update('employees_details', $formArray);
+        return $this->db->affected_rows();
+    }
 }
