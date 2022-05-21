@@ -14,8 +14,6 @@ class AdminController extends CI_Controller
     {
         $principle_for_verification_from_admin = $this->Admin_model->get_roles_for_verification();
 
-
-
         sendSuccess($principle_for_verification_from_admin);
     }
 
@@ -48,5 +46,14 @@ class AdminController extends CI_Controller
         $employees = $this->Admin_model->get_employees($sevarth_id);
 
         sendSuccess($employees);
+    }
+
+    //hod
+    public function show_hod_verifications()
+    {
+        $hod_id = $this->input->post('hod_id');
+        $principle_for_verification_from_admin = $this->Admin_model->get_hod_employees_for_verification($hod_id);
+
+        sendSuccess($principle_for_verification_from_admin);
     }
 }

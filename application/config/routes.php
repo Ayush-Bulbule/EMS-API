@@ -79,6 +79,7 @@ $route['get_details'] = 'EmployeeDetails/get_details';
 $route['edit_details'] = 'EmployeeDetails/edit_details';
 
 $route['show_verifications'] = 'AdminController/show_verifications';
+$route['show_hod_verifications'] = 'AdminController/show_hod_verifications';
 $route['show_employees'] = 'AdminController/show_employees';
 
 $route['accept_principle_request'] = 'AdminController/accept_principle_request';
